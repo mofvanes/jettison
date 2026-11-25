@@ -418,6 +418,10 @@ public class JSONObject implements Serializable {
 // Shave off trailing zeros and decimal point, if possible.
 
         String s = Double.toString(d);
+        return removeTrailingZeros(s);
+    }
+
+    private static String removeTrailingZeros(String s) {
         if (s.indexOf('.') > 0 && s.indexOf('e') < 0 && s.indexOf('E') < 0) {
             while (s.endsWith("0")) {
                 s = s.substring(0, s.length() - 1);
@@ -674,15 +678,7 @@ public class JSONObject implements Serializable {
 // Shave off trailing zeros and decimal point, if possible.
 
         String s = n.toString();
-        if (s.indexOf('.') > 0 && s.indexOf('e') < 0 && s.indexOf('E') < 0) {
-            while (s.endsWith("0")) {
-                s = s.substring(0, s.length() - 1);
-            }
-            if (s.endsWith(".")) {
-                s = s.substring(0, s.length() - 1);
-            }
-        }
-        return s;
+        return removeTrailingZeros(s);
     }
 
 
